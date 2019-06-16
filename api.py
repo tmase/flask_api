@@ -1,19 +1,11 @@
 import flask
 from flask import request, jsonify
-import pandas as pd
 import psycopg2
-from config import config
+import os
+
 
 field_dict = {"cik":"cik","start_date":"periodofreport","end_date":"periodofreport"}
-
 app = flask.Flask(__name__)
-#app.config["DEBUG"] = True
-
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-    return d
 
 @app.route('/', methods=['GET'])
 def home():
@@ -36,8 +28,8 @@ def api_filter():
 	
 	#submit sql query to database
 	conn = None
-	params = config()
-	conn = psycopg2.connect(**params)
+	DATABASE_URL = os.environ['DATABASE_URL']
+	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = conn.cursor()
 	cur.execute(sql)
 	results = cur.fetchall()
