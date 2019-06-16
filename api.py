@@ -36,4 +36,4 @@ def api_filter():
 	
 	return jsonify(results)
 	
-app.run()
+app.run(debug=True, port=33507)
