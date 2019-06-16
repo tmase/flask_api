@@ -1,7 +1,6 @@
 import flask
 from flask import request, jsonify
 import psycopg2
-import os
 
 
 field_dict = {"cik":"cik","start_date":"periodofreport","end_date":"periodofreport"}
@@ -28,7 +27,7 @@ def api_filter():
 	
 	#submit sql query to database
 	conn = None
-	DATABASE_URL = os.environ['DATABASE_URL']
+	DATABASE_URL = 'postgres://xguecwohsbjfdz:dcbaf4d0b37bf4f3a508cd044a7a56c7c6ef8c9d32b3668b4ac408b43bf6f086@ec2-23-21-91-183.compute-1.amazonaws.com:5432/d4lfl5vii49uqk'
 	conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	cur = conn.cursor()
 	cur.execute(sql)
