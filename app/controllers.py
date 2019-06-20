@@ -8,7 +8,7 @@ field_dict = {"cik":"cik","start_date":"periodofreport","end_date":"periodofrepo
 @app.route('/')
 @app.route('/index')
 def index():
-	return "hello, world"
+	return "Welcome to the Summary Data API"
 
 @app.route('/api/v1/resources/summary', methods=['GET'])
 def api_filter():
