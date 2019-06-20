@@ -3,11 +3,13 @@ import os
 import psycopg2
 from flask import request, jsonify
 
+field_dict = {"cik":"cik","start_date":"periodofreport","end_date":"periodofreport"}
+
 @app.route('/')
 @app.route('/index')
 def index():
 	return "hello, world"
-	
+
 @app.route('/api/v1/resources/summary', methods=['GET'])
 def api_filter():
 	sql = "SELECT * FROM summary WHERE"
@@ -30,5 +32,4 @@ def api_filter():
 	cur = conn.cursor()
 	cur.execute(sql)
 	results = cur.fetchall()
-	
 	return jsonify(results)
