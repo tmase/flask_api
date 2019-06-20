@@ -5,7 +5,7 @@ import psycopg2
 
 
 field_dict = {"cik":"cik","start_date":"periodofreport","end_date":"periodofreport"}
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
@@ -36,4 +36,4 @@ def api_filter():
 	
 	return jsonify(results)
 	
-app.run(debug=True, port=33507)
+app.run()
